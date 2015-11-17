@@ -53,7 +53,9 @@ module Cm2k15 {
                         tile.Reset();
                     }
 
-                    tile.SetVisited(tileState.Visited);
+                    tile.SetState('visited', tileState.Visited);
+                    tile.SetState('edge', left+j == 0 || left+j == this.tileCount-1 || top+i == 0 || top+i == this.tileCount-1);
+                    tile.Display();
                 }
             }
         }

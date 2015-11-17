@@ -1,4 +1,12 @@
 module Cm2k15 {
+    var directions = {
+        Top : 'up',
+        Right: 'right',
+        Bottom: 'down',
+        Left: 'left'
+    };
+
+
     export class GameMapState {
         public Tiles: TileState[][];
         public Player: PlayerState;
@@ -24,6 +32,17 @@ module Cm2k15 {
 
             this.Tiles[this.Player.X][this.Player.Y].Visited = true;
         }
+
+        public MovePlayer(direction){
+            if((this.Player.X == 0 && direction == directions.Left)||
+                (this.Player.Y == 0 && direction == directions.Top)||
+                (this.Player.X == this.Width-1 && direction == directions.Right)||
+                (this.Player.Y == this.Height-1 && direction == directions.Bottom)){
+                return "You can't leave this area, turn around!";
+            } else {
+                return this.Player.Move(direction);
+            }
+        }
     }
 
     class TileState {
@@ -40,16 +59,16 @@ module Cm2k15 {
 
         public Move(direction: string) {
             switch (direction) {
-                case 'up':
+                case directions.Top:
                     this.Y--;
                     break;
-                case 'down':
+                case directions.Bottom:
                     this.Y++;
                     break;
-                case 'left':
+                case directions.Left:
                     this.X--;
                     break;
-                case 'right':
+                case directions.Right:
                     this.X++;
                     break;
                 default:

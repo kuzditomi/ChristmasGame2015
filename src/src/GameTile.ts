@@ -1,10 +1,14 @@
 ﻿module Cm2k15 {
   export class GameTile {
     private element: HTMLDivElement;
+    private flags: string[];
+    private content: string;
 
     public constructor(row: number, col: number, size: number, element: HTMLDivElement) {
       //console.log('gametile constructor:' + row + ',' + col);
       this.element = element;
+      this.content = '';
+      this.flags = ['tile'];
       this.initialize(row,col,size);
     }
 
@@ -16,15 +20,29 @@
     }
 
     public Reset(){
-      this.element.innerText = "";
+      this.content = '';
     }
 
     public Set(text: string){
-      this.element.innerText = text;
+      this.content = text;
     }
 
-    public SetVisited(visited: boolean){
-      this.element.className = 'tile ' + (visited ? '' : 'dark');
+    public SetState(flag: string, on: boolean){
+      var index = this.flags.indexOf(flag);
+
+      if(on && index == -1){
+        this.flags.push(flag);
+        return;
+      }
+
+      if(!on && index != -1){
+        this.flags.splice(index, 1);
+      }
+    }
+
+    public Display(){
+      this.element.className = this.flags.join(' ');
+      this.element.innerText = this.content;
     }
   }
 }

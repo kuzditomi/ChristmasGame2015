@@ -52,8 +52,9 @@ module Cm2k15 {
     }
 
     private moveCommand(direction) {
-      var result = this.state.Player.Move(direction);
+      var result = this.state.MovePlayer(direction);
       this.state.Tiles[this.state.Player.X][this.state.Player.Y].Visited = true;
+
       this.map.Display();
 
       return result;

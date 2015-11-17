@@ -6,14 +6,19 @@
 	width: 300px;
 	height: 300px;
 	border: 1px solid black;
-  position: relative;
+    position: relative;
 
   .tile{
     position: absolute;
     border: 1px solid #e3e3e3;
+    background: #363636;
 
-    &.dark{
-      background: #363636;
+    &.visited{
+      background: #d2d2d2;
+
+      &.edge {
+        background: #191919;
+      }
     }
   }
 }
