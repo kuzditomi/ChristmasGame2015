@@ -17,3 +17,8 @@ textarea {
   resize: none;
   border: 1px solid black;
 }
+#message {
+  height: 3em;
+  width: 300px;
+  overflow-y: scroll;
+}
