@@ -10,9 +10,13 @@
 #map .tile {
   position: absolute;
   border: 1px solid #e3e3e3;
-}
-#map .tile.dark {
   background: #363636;
+}
+#map .tile.visited {
+  background: #d2d2d2;
+}
+#map .tile.visited.edge {
+  background: #191919;
 }
 textarea {
   width: 300px;
