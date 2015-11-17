@@ -29,8 +29,12 @@
           break;
         case 'right':
           this.x++;
-          break; 
+          break;
+        default:
+          return 'Move where?';
       }
+
+      return "You have moved " + direction + ".";
     }
   }
 }

@@ -3,18 +3,19 @@
 
 module Cm2k15 {
   export class Game {
-
     private map: GameMap;
     private player: GamePlayer;
-    private commands: { [key:string] : (args) => any };
+    private messageElement: HTMLDivElement;
+    private commands: { [key: string]: (args) => any };
 
-    public constructor(map: HTMLDivElement, input: HTMLTextAreaElement) {
+    public constructor(map: HTMLDivElement, input: HTMLTextAreaElement, message: HTMLDivElement) {
       console.log('game constructor');
 
       this.commands = {};
       this.player = new GamePlayer();
       this.map = new GameMap(map, this.player);
       this.map.Display();
+      this.messageElement = message;
 
       input.onkeydown = (e: KeyboardEvent) => {
         if (e.keyCode == 13) {
@@ -41,13 +42,40 @@ module Cm2k15 {
       var command = parts[0];
       var args = parts.length > 1 ? parts.splice(1, parts.length - 1) : [];
       if (this.commands[command]) {
-        this.commands[command].apply(this, args);
+        var result = this.commands[command].apply(this, args);
+        this.message(result);
+      } else {
+        this.messageNoCommand();
       }
     }
 
     private moveCommand(direction) {
-      this.player.Move(direction);
+      var result = this.player.Move(direction);
       this.map.Display();
+
+      return result;
+    }
+
+    private message(text: string) {
+      if (text) {
+        var row = document.createElement('div');
+        row.innerText = text;
+
+        this.messageElement.appendChild(row);
+        this.messageElement.scrollTop = this.messageElement.scrollHeight - this.messageElement.clientHeight;
+      }
+    }
+
+    private messageNoCommand() {
+      var messages = [
+        "what?",
+        "uhm...",
+        "nope",
+        "i dont think so"
+      ];
+
+      var message = messages[Math.floor(Math.random() * messages.length)];
+      this.message(message);
     }
   }
 }
