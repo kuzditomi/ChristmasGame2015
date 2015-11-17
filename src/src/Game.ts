@@ -1,19 +1,21 @@
 /// <reference path="GameMap.ts"/>
-/// <reference path="GamePlayer.ts"/>
+/// <reference path="GameMapState.ts"/>
 
 module Cm2k15 {
   export class Game {
     private map: GameMap;
-    private player: GamePlayer;
-    private messageElement: HTMLDivElement;
+    private state: GameMapState;
     private commands: { [key: string]: (args) => any };
+
+    // ui
+    private messageElement: HTMLDivElement;
 
     public constructor(map: HTMLDivElement, input: HTMLTextAreaElement, message: HTMLDivElement) {
       console.log('game constructor');
 
+      this.state = new GameMapState(20,20);
       this.commands = {};
-      this.player = new GamePlayer();
-      this.map = new GameMap(map, this.player);
+      this.map = new GameMap(map, this.state);
       this.map.Display();
       this.messageElement = message;
 
@@ -50,7 +52,8 @@ module Cm2k15 {
     }
 
     private moveCommand(direction) {
-      var result = this.player.Move(direction);
+      var result = this.state.Player.Move(direction);
+      this.state.Tiles[this.state.Player.X][this.state.Player.Y].Visited = true;
       this.map.Display();
 
       return result;

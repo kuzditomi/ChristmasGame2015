@@ -22,5 +22,9 @@
     public Set(text: string){
       this.element.innerText = text;
     }
+
+    public SetVisited(visited: boolean){
+      this.element.className = 'tile ' + (visited ? '' : 'dark');
+    }
   }
 }
