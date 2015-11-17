@@ -9,7 +9,10 @@
 }
 #map .tile {
   position: absolute;
-  border: 1px solid black;
+  border: 1px solid #e3e3e3;
+}
+#map .tile.dark {
+  background: #363636;
 }
 textarea {
   width: 300px;
