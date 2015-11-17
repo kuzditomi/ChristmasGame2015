@@ -25,9 +25,10 @@ module Cm2k15 {
     }
 
     public Display() {
+      var playerpos = this.player.GetPosition();
       for (var i = 0; i < this.tileCount; i++) {
         for (var j = 0; j < this.tileCount; j++) {
-          if (i == this.player.GetPosition() && j == this.player.GetPosition()) {
+          if (i == playerpos.y && j == playerpos.x) {
             this.tiles[i][j].Set('[x]');
           } else {
             this.tiles[i][j].Reset();

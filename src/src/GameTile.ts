@@ -3,7 +3,7 @@
     private element: HTMLDivElement;
 
     public constructor(row: number, col: number, size: number, element: HTMLDivElement) {
-      console.log('gametile constructor:' + row + ',' + col);
+      //console.log('gametile constructor:' + row + ',' + col);
       this.element = element;
       this.initialize(row,col,size);
     }
