@@ -1,5 +1,5 @@
 ﻿module Cm2k15 {
-  export class GameTile {
+  export class TileView {
     private element: HTMLDivElement;
     private flags: string[];
     private content: string;
@@ -35,7 +35,7 @@
         return;
       }
 
-      if(!on && index != -1){
+      if(!on && index != -1){ 
         this.flags.splice(index, 1);
       }
     }

@@ -1,4 +1,4 @@
-* {
+﻿* {
   box-sizing: border-box;
 }
 main#left {
@@ -42,3 +42,4 @@ aside#right #room {
   height: 300px;
   border: 1px solid black;
 }
+/*# sourceMappingURL=style.css.map */

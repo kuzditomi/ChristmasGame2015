@@ -1,24 +1,32 @@
-/// <reference path="GameMap.ts"/>
-/// <reference path="GameMapState.ts"/>
+/// <reference path="model/MapModel.ts"/>
+/// <reference path="view/MapView.ts"/>
 
 module Cm2k15 {
   export class Game {
-    private map: GameMap;
-    private state: GameMapState;
-    private commands: { [key: string]: (args) => any };
+    private mapView: MapView;
+    private mapModel: MapModel;
 
-    // ui
+    private room: RoomView;
+    private roomModel: RoomModel;
+     
+    private commands: { [key: string]: (args) => any };
+    
     private messageElement: HTMLDivElement;
 
-    public constructor(map: HTMLDivElement, input: HTMLTextAreaElement, message: HTMLDivElement) {
+    public constructor() {
       console.log('game constructor');
 
-      this.state = new GameMapState(20,20);
-      this.commands = {};
-      this.map = new GameMap(map, this.state);
-      this.map.Display();
+      // get dom elements
+      var input = <HTMLTextAreaElement>document.getElementById('command');
+      var message = <HTMLDivElement>document.getElementById('message');
       this.messageElement = message;
 
+      // initialize state and commands
+      this.mapModel = new MapModel(20,20);
+      this.commands = {};
+      this.registerCommands();
+
+      // subscribe events      
       input.onkeydown = (e: KeyboardEvent) => {
         if (e.keyCode == 13) {
           var command = input.value;
@@ -28,7 +36,9 @@ module Cm2k15 {
         }
       };
 
-      this.registerCommands();
+      // create map view
+      this.mapView = new MapView(this.mapModel);
+      this.mapView.Display();
     }
 
     private registerCommands() {
@@ -52,10 +62,10 @@ module Cm2k15 {
     }
 
     private moveCommand(direction) {
-      var result = this.state.MovePlayer(direction);
-      this.state.Tiles[this.state.Player.X][this.state.Player.Y].Visited = true;
+      var result = this.mapModel.MovePlayer(direction);
+      this.mapModel.Tiles[this.mapModel.Player.X][this.mapModel.Player.Y].Visited = true;
 
-      this.map.Display();
+      this.mapView.Display();
 
       return result;
     }
