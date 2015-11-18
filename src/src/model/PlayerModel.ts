@@ -23,5 +23,5 @@ module Cm2k15 {
 
       return "You have moved " + direction + ".";
     }
-  }
+  } 
 }

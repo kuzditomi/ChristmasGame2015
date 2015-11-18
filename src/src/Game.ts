@@ -1,21 +1,19 @@
 /// <reference path="model/MapModel.ts"/>
 /// <reference path="view/MapView.ts"/>
+/// <reference path="view/RoomView.ts"/>
 
 module Cm2k15 {
   export class Game {
     private mapView: MapView;
     private mapModel: MapModel;
 
-    private room: RoomView;
-    private roomModel: RoomModel;
+    private roomView: RoomView;
      
     private commands: { [key: string]: (args) => any };
     
     private messageElement: HTMLDivElement;
 
     public constructor() {
-      console.log('game constructor');
-
       // get dom elements
       var input = <HTMLTextAreaElement>document.getElementById('command');
       var message = <HTMLDivElement>document.getElementById('message');
@@ -39,6 +37,8 @@ module Cm2k15 {
       // create map view
       this.mapView = new MapView(this.mapModel);
       this.mapView.Display();
+
+      this.roomView = new RoomView();
     }
 
     private registerCommands() {
@@ -63,8 +63,10 @@ module Cm2k15 {
 
     private moveCommand(direction) {
       var result = this.mapModel.MovePlayer(direction);
-      this.mapModel.Tiles[this.mapModel.Player.X][this.mapModel.Player.Y].Visited = true;
+      var tile = this.mapModel.Tiles[this.mapModel.Player.X][this.mapModel.Player.Y];
+      tile.IsVisited = true;
 
+      this.roomView.Draw(tile.Room);
       this.mapView.Display();
 
       return result;

@@ -1,9 +1,10 @@
 module Cm2k15 {
   export class TileModel {
-    public Visited: boolean;
+    public IsVisited: boolean;
+    public Room: RoomBase;
 
     constructor() {
-      this.Visited = false;
+      this.IsVisited = false;
     }
   }
 }

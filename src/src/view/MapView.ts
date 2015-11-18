@@ -13,7 +13,7 @@ module Cm2k15 {
 
     public constructor(model: MapModel) {
       console.log('gamemap constructor');
-
+      
       var mapElement = <HTMLDivElement>document.getElementById('map');
       var message = <HTMLDivElement>document.getElementById('message');
 
@@ -38,26 +38,33 @@ module Cm2k15 {
       var middle = Math.floor(this.tileCount / 2);
 
       var left = this.model.Player.X < (middle) ? 0
-        : this.model.Player.X > (this.model.Width - middle) ? this.model.Width - this.tileCount
+        : this.model.Player.X > (this.model.Width - 1 - middle) ? this.model.Width - this.tileCount
           : this.model.Player.X - middle;
 
       var top = this.model.Player.Y < (middle) ? 0
-        : this.model.Player.Y > (this.model.Height - middle) ? this.model.Height - this.tileCount
+        : this.model.Player.Y > (this.model.Height - 1 - middle) ? this.model.Height - this.tileCount
         : this.model.Player.Y - middle;
 
       for (var i = 0; i < this.tileCount; i++) {
         for (var j = 0; j < this.tileCount; j++) {
-          var tile = this.tiles[i][j];
-          var tileState = this.model.Tiles[left + j][top + i];
+          var x = left + j;
+          var y = top + i;
 
-          if (top + i == this.model.Player.Y && left + j == this.model.Player.X) {
+          var tile = this.tiles[i][j];
+          var tileState = this.model.Tiles[x][y];
+
+          if (x == this.model.Player.X && y == this.model.Player.Y) {
             tile.Set('[x]');
           } else {
             tile.Reset();
           }
 
-          tile.SetState('visited', tileState.Visited);
-          tile.SetState('edge', left + j == 0 || left + j == this.tileCount - 1 || top + i == 0 || top + i == this.tileCount - 1);
+          tile.SetState('visited', tileState.IsVisited);
+          tile.SetState('edge', x == 0 || x == this.model.Width - 1 || y == 0 || y == this.model.Height - 1);
+
+          var isRoom = this.model.Rooms.filter(room => room.X == x && room.Y == y).length > 0;
+          tile.SetState('room', isRoom);
+
           tile.Display();
         }
       }
