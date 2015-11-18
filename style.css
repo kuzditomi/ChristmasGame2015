@@ -21,6 +21,9 @@ main#left #map .tile.visited {
 main#left #map .tile.visited.edge {
   background: #191919;
 }
+main#left #map .tile.visited.room {
+  border: 1px solid black;
+}
 main#left textarea {
   width: 300px;
   margin-top: 10px;
