@@ -1,31 +1,44 @@
 * {
   box-sizing: border-box;
 }
-#map {
+main#left {
+  display: inline-block;
+}
+main#left #map {
   width: 300px;
   height: 300px;
   border: 1px solid black;
   position: relative;
 }
-#map .tile {
+main#left #map .tile {
   position: absolute;
   border: 1px solid #e3e3e3;
   background: #363636;
 }
-#map .tile.visited {
+main#left #map .tile.visited {
   background: #d2d2d2;
 }
-#map .tile.visited.edge {
+main#left #map .tile.visited.edge {
   background: #191919;
 }
-textarea {
+main#left textarea {
   width: 300px;
   margin-top: 10px;
   resize: none;
   border: 1px solid black;
 }
-#message {
+main#left #message {
   height: 3em;
   width: 300px;
   overflow-y: scroll;
+}
+aside#right {
+  display: inline-block;
+  vertical-align: top;
+  padding-left: 10px;
+}
+aside#right #room {
+  width: 300px;
+  height: 300px;
+  border: 1px solid black;
 }
