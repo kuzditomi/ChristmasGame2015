@@ -1,10 +1,13 @@
 module Cm2k15 {
-  export class TileModel {
-    public IsVisited: boolean;
-    public Room: RoomBase;
+    export class TileModel {
+        public IsVisited: boolean;
+        public IsPlayer: boolean;
+        public Type: string;
 
-    constructor() {
-      this.IsVisited = false;
+        constructor(tileType: string) {
+            this.IsVisited = false;
+            this.IsPlayer = false;
+            this.Type = tileType;
+        }
     }
-  }
 }

@@ -12,17 +12,7 @@ main#left #map {
 }
 main#left #map .tile {
   position: absolute;
-  border: 1px solid #e3e3e3;
-  background: #363636;
-}
-main#left #map .tile.visited {
-  background: #d2d2d2;
-}
-main#left #map .tile.visited.edge {
-  background: #191919;
-}
-main#left #map .tile.visited.room {
-  border: 1px solid black;
+  background-size: contain !important;
 }
 main#left textarea {
   width: 300px;

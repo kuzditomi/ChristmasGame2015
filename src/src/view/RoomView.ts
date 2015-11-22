@@ -13,7 +13,6 @@
       }
 
       this.roomElement.innerText = room.Description;
-
     }
   }
 }
