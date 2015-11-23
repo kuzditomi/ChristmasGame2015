@@ -62,6 +62,10 @@ module Cm2k15 {
         }
 
         private moveCommand(direction) {
+            var currentTile = this.mapModel.Tiles[this.mapModel.Player.X][this.mapModel.Player.Y];
+            if (currentTile.AllowedMoves.indexOf(direction) == -1) 
+                return 'erre nem mehetsz';
+            
             var result = this.mapModel.MovePlayer(direction);
             var tile = this.mapModel.Tiles[this.mapModel.Player.X][this.mapModel.Player.Y];
             tile.IsVisited = true;

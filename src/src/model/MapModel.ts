@@ -1,9 +1,10 @@
 /// <reference path="TileModel.ts"/>
 /// <reference path="PlayerModel.ts"/>
 /// <reference path="RoomModel.ts"/>
+/// <reference path="MoveDirections.ts"/>
 
 module Cm2k15 {
-    export var map = [
+    var map = [
         ['-', '-', '-', '-', '-', 'e1', 'e2', 'e3', 'e4', 'e5', 'e6', 'e7', 'e8'],
         ['-', '-', '-', '-', '-', 'e9', 'e10', 'e11', 'e12', 'e13', 'e14', 'e15', 'e16'],
         ['-', 'm1', 'm2', 'm3', '-', 'e17', 'e17', 'e19', 'e20', 'e21', 'e22', 'e23', 'e24'],
@@ -19,12 +20,21 @@ module Cm2k15 {
         ['-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-']
     ];
 
-    export var directions = {
-        Top: 'up',
-        Right: 'right',
-        Bottom: 'down',
-        Left: 'left'
-    };
+    var canMoveOnMap = [
+        ['', '', '', '', '', '', '', '', '', '', '', '', ''],
+        ['', '', '', '', '', '', '', '', '', '', '', '', ''],
+        ['', '', '', '', '', '', '', '', '', '', '', '', ''],
+        ['', '', '', '', '', '', '', '', '', '', '', '', ''],
+        ['', '', '', '', '', '', '', '', '', '', '', '', ''],
+        ['', '', '', '', '', '', '', '', '', '', '', '', ''],
+        ['', '', '', '', '', '', '', '', '', '', '', '', ''],
+        ['', '', '', '', '', '', '', '', '', '', '', '', ''],
+        ['', '', '', '', '', '', '', '', '', '', '', '', ''],
+        ['', '', '', '', '', '', '', '', '', '', '', '', ''],
+        ['', '', '', '', '', '', '', '', '', '', '', '', ''],
+        ['', '', '', '', '', '', '', '', '', '', '', '', ''],
+        ['', '', '', '', '', 'u', 'u', 'u', '', '', '', '', ''],
+    ];
 
     export class MapModel {
         public Tiles: TileModel[][];
@@ -43,7 +53,11 @@ module Cm2k15 {
             for (var i = 0; i < this.Height; i++) {
                 this.Tiles[i] = [];
                 for (var j = 0; j < this.Width; j++) {
-                    this.Tiles[i][j] = new TileModel(map[j][i]);
+                    var tile = new TileModel(map[j][i]);
+                    
+                    tile.AllowMovementInDirections(this.getDirections(j, i));
+
+                    this.Tiles[i][j] = tile;
                 }
             }
 
@@ -54,6 +68,19 @@ module Cm2k15 {
             this.Tiles[this.Player.X][this.Player.Y].IsVisited = true;
 
             this.Rooms = [];
+        }
+
+        private movementMap = {
+            'u': Cm2k15.directions.Up,
+            'd': Cm2k15.directions.Down,
+            'l': Cm2k15.directions.Left,
+            'r': Cm2k15.directions.Right
+        }
+
+        private getDirections(x: number, y: number): string[] {
+            var movementCell = canMoveOnMap[x][y];
+            var result = movementCell.split('').map(d => this.movementMap[d]);
+            return result;
         }
 
         public MovePlayer(direction) {

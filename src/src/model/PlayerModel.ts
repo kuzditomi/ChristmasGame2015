@@ -5,10 +5,10 @@ module Cm2k15 {
 
     public Move(direction: string) {
       switch (direction) {
-        case directions.Top:
+        case directions.Up:
           this.Y--;
           break;
-        case directions.Bottom:
+        case directions.Down:
           this.Y++;
           break;
         case directions.Left:
@@ -24,4 +24,4 @@ module Cm2k15 {
       return "You have moved " + direction + ".";
     }
   } 
-}
+} 

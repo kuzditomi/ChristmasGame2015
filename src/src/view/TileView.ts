@@ -1,4 +1,5 @@
-﻿module Cm2k15 {
+﻿/// <reference path="../model/TileModel.ts"/>
+module Cm2k15 {
     export class TileView {
         private element: HTMLDivElement;
         private content: string;
@@ -16,7 +17,7 @@
             this.element.style.left = col * size + 'px';
             this.element.style.width = this.element.style.height = size + 'px';
             this.element.className = 'tile';
-        }
+        } 
 
         public Display() { 
             if (this.model.IsVisited) {
@@ -27,9 +28,9 @@
             }
 
             if (this.model.IsPlayer) {
-                this.element.innerText = '[x]';
+                this.element.className = 'tile player';
             } else {                
-                this.element.innerText = '';
+                this.element.className = 'tile';
             }
         }
     }
