@@ -43,6 +43,19 @@ module Cm2k15 {
 
         private registerCommands() {
             this.registerCommand('move', this.moveCommand);
+
+            document.getElementById('move-up-command').onclick = () => {
+                this.onCommand('move ' + Cm2k15.directions.Up);
+            };
+            document.getElementById('move-down-command').onclick = () => {
+                this.onCommand('move ' + Cm2k15.directions.Down);
+            };
+            document.getElementById('move-right-command').onclick = () => {
+                this.onCommand('move ' + Cm2k15.directions.Right);
+            };
+            document.getElementById('move-left-command').onclick = () => {
+                this.onCommand('move ' + Cm2k15.directions.Left);
+            };
         }
 
         private registerCommand(key: string, command: (args) => any) {

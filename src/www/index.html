@@ -1,22 +1,30 @@
 ﻿<!doctype html>
 <html>
 <head>
-  <title>Cm2k15</title>
-  <meta charset="utf-8" />
-  <link href="style.css" rel="stylesheet" />
+    <title>Cm2k15</title>
+    <meta charset="utf-8" />
+    <link href="style.css" rel="stylesheet" />
 </head>
 <body>
-  <main id="left">
-    <div id="map"></div>
-    <div id="message">
+    <main id="left">
+        <div id="map"></div>
+        <div id="message">
+        </div>
+        <div>
+            <textarea id="command"></textarea>
+        </div>
+    </main>
+    <aside id="right">
+        <div id="room"></div>
+        <div id="commands">
+            <div id="move-commands">
+                <div id="move-up-command" class="move-command"></div>
+                <div id="move-left-command" class="move-command"></div>
+                <div id="move-down-command" class="move-command"></div>
+                <div id="move-right-command" class="move-command"></div>
+            </div>
     </div>
-    <div>
-      <textarea id="command"></textarea>
-    </div>
-  </main>
-  <aside id="right">
-    <div id="room"></div>
-  </aside>
-  <script src="app.js"></script>
+    </aside>
+    <script src="app.js"></script>
 </body>
 </html>

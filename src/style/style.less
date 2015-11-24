@@ -15,7 +15,7 @@ main#left {
       position: absolute;
       background-size: contain !important;
 
-      &.player::after{
+      &.player::after {
         display: inline-block;
         width: 100%;
         height: 100%;
@@ -39,14 +39,74 @@ main#left {
     overflow-y: scroll;
   }
 }
-aside#right{
+
+aside#right {
   display: inline-block;
   vertical-align: top;
   padding-left: 10px;
 
-  #room{
+  #room {
     width: 300px;
     height: 300px;
     border: 1px solid black;
+  }
+
+  #commands {
+    display: inline-block;
+    width: 300px;
+    height: 85px;
+    margin-top: 10px;
+    border: 1px solid black;
+
+    #move-commands {
+      position: relative;
+
+      .move-command {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        border: 1px solid black;
+        cursor: pointer;
+
+        &::after{
+          font-size: 25px;
+          display: inline-block;
+          width: 90%;
+          text-align: center;
+        }
+      }
+
+      #move-up-command {
+        left: 42px;
+        top: 1px;
+        &::after{
+          content: '\21e7';
+        }
+      }
+
+      #move-left-command {
+        top: 20px;
+        left: 1px;
+        &::after{
+          content: '\21e6';
+        }
+      }
+
+      #move-right-command {
+        left: 83px;
+        top: 20px;
+        &::after{
+          content: '\21e8';
+        }
+      }
+
+      #move-down-command {
+        left: 42px;
+        top: 42px;
+        &::after{
+          content: '\21e9';
+        }
+      }
+    }
   }
 }

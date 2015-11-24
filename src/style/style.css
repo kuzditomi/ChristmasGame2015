@@ -43,4 +43,55 @@ aside#right #room {
   height: 300px;
   border: 1px solid black;
 }
+aside#right #commands {
+  display: inline-block;
+  width: 300px;
+  height: 85px;
+  margin-top: 10px;
+  border: 1px solid black;
+}
+aside#right #commands #move-commands {
+  position: relative;
+}
+aside#right #commands #move-commands .move-command {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
+  cursor: pointer;
+}
+aside#right #commands #move-commands .move-command::after {
+  font-size: 25px;
+  display: inline-block;
+  width: 90%;
+  text-align: center;
+}
+aside#right #commands #move-commands #move-up-command {
+  left: 42px;
+  top: 1px;
+}
+aside#right #commands #move-commands #move-up-command::after {
+  content: '\21e7';
+}
+aside#right #commands #move-commands #move-left-command {
+  top: 20px;
+  left: 1px;
+}
+aside#right #commands #move-commands #move-left-command::after {
+  content: '\21e6';
+}
+aside#right #commands #move-commands #move-right-command {
+  left: 83px;
+  top: 20px;
+}
+aside#right #commands #move-commands #move-right-command::after {
+  content: '\21e8';
+}
+aside#right #commands #move-commands #move-down-command {
+  left: 42px;
+  top: 42px;
+}
+aside#right #commands #move-commands #move-down-command::after {
+  content: '\21e9';
+}
 /*# sourceMappingURL=style.css.map */
