@@ -10,7 +10,7 @@
     "gulp-typescript": "^2.9.2",
     "gulp-watch": "^4.3.5"
   },
-  "engines": {
+  "engines": { 
     "node": ">=0.10.0"
   }
 }

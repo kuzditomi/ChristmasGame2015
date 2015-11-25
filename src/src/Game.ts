@@ -1,13 +1,13 @@
 /// <reference path="model/MapModel.ts"/>
 /// <reference path="view/MapView.ts"/>
-/// <reference path="view/RoomView.ts"/>
+/// <reference path="view/StoryView.ts"/>
 
 module Cm2k15 {
     export class Game {
         private mapView: MapView;
         private mapModel: MapModel;
 
-        private roomView: RoomView;
+        private storyView: StoryView;
 
         private commands: { [key: string]: (args) => any };
 
@@ -38,7 +38,7 @@ module Cm2k15 {
             this.mapView = new MapView(this.mapModel);
             this.mapView.Display();
 
-            this.roomView = new RoomView();
+            this.storyView = new StoryView();
         }
 
         private registerCommands() {
@@ -80,19 +80,20 @@ module Cm2k15 {
                 return 'erre nem mehetsz';
             
             var result = this.mapModel.MovePlayer(direction);
-            var tile = this.mapModel.Tiles[this.mapModel.Player.X][this.mapModel.Player.Y];
-            tile.IsVisited = true;
+            if (!result.Success) {
+                return result.Message;
+            }
 
-            //this.roomView.Draw(tile.Room);
+            this.storyView.Draw(result.Story);
             this.mapView.Display();
 
-            return result;
+            return "siker!" + result.Message + (result.Story && ('</br>' + result.Story.Story) || '');
         }
 
         private message(text: string) {
             if (text) {
                 var row = document.createElement('div');
-                row.innerText = text;
+                row.innerHTML = text;
 
                 this.messageElement.appendChild(row);
                 this.messageElement.scrollTop = this.messageElement.scrollHeight - this.messageElement.clientHeight;

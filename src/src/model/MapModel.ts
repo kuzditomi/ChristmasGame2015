@@ -1,10 +1,11 @@
-/// <reference path="TileModel.ts"/>
+﻿/// <reference path="TileModel.ts"/>
 /// <reference path="PlayerModel.ts"/>
-/// <reference path="RoomModel.ts"/>
+/// <reference path="StoryModel.ts"/>
 /// <reference path="MoveDirections.ts"/>
 
 module Cm2k15 {
-    var map = [
+    var map: string[][];
+    map = [
         ['-', '-', '-', '-', '-', 'e1', 'e2', 'e3', 'e4', 'e5', 'e6', 'e7', 'e8'],
         ['-', '-', '-', '-', '-', 'e9', 'e10', 'e11', 'e12', 'e13', 'e14', 'e15', 'e16'],
         ['-', 'm1', 'm2', 'm3', '-', 'e17', 'e17', 'e19', 'e20', 'e21', 'e22', 'e23', 'e24'],
@@ -20,7 +21,8 @@ module Cm2k15 {
         ['-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-', '-']
     ];
 
-    var canMoveOnMap = [
+    var canMoveOnMap: string[][];
+    canMoveOnMap = [
         ['', '', '', '', '', '', '', '', '', '', '', '', ''],
         ['', '', '', '', '', '', '', '', '', '', '', '', ''],
         ['', '', '', '', '', '', '', '', '', '', '', '', ''],
@@ -35,6 +37,13 @@ module Cm2k15 {
         ['', '', '', '', '', '', 'ud', '', '', '', '', '', ''],
         ['', '', '', '', '', '', 'u', '', '', '', '', '', ''],
     ];
+
+    var storiesTileMapping: { [key: string]: StoryModel }
+    storiesTileMapping = {
+        'kb': {
+            Story: 'Ez a bejárat!'
+        }
+    };
 
     export class MapModel {
         public Tiles: TileModel[][];
@@ -56,6 +65,7 @@ module Cm2k15 {
                     var tile = new TileModel(map[j][i]);
                     
                     tile.AllowMovementInDirections(this.getDirections(j, i));
+                    tile.Story = storiesTileMapping[tile.Type];
 
                     this.Tiles[i][j] = tile;
                 }
@@ -86,7 +96,12 @@ module Cm2k15 {
         public MovePlayer(direction) {
             var response = this.Player.Move(direction);
 
-            console.log('Player moved ' + this.Player.X + ':' + this.Player.Y);
+            if (response.Success) {
+                var tile = this.Tiles[this.Player.X][this.Player.Y];
+                tile.IsVisited = true;
+
+                response.Story = tile.Story;
+            }
 
             return response;
         }

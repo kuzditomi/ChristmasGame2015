@@ -6,6 +6,7 @@ module Cm2k15 {
         public IsPlayer: boolean;
         public Type: string;
         public AllowedMoves: string[];
+        public Story: StoryModel;
 
         constructor(tileType: string) {
             this.IsVisited = false;
