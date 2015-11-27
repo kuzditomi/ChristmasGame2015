@@ -8,6 +8,7 @@ module Cm2k15 {
     export class PlayerModel {
         public X: number;
         public Y: number;
+        public IsInStory: boolean;
 
         public Move(direction: string) : PlayerMoveResult {
             var result = new PlayerMoveResult();

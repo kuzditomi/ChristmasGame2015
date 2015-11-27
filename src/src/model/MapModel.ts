@@ -41,6 +41,7 @@ module Cm2k15 {
     var storiesTileMapping: { [key: string]: StoryModel }
     storiesTileMapping = {
         'kb': {
+            Id: 'kb',
             Story: 'Ez a bejárat!'
         }
     };
@@ -98,7 +99,10 @@ module Cm2k15 {
                 var tile = this.Tiles[this.Player.X][this.Player.Y];
                 tile.IsVisited = true;
 
-                response.Story = tile.Story;
+                if (tile.Story) {
+                    response.Story = tile.Story;
+                    this.Player.IsInStory = true;
+                }
             }
 
             return response;
