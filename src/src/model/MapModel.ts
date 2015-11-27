@@ -48,9 +48,8 @@ module Cm2k15 {
     export class MapModel {
         public Tiles: TileModel[][];
         public Player: PlayerModel;
-        public Rooms: RoomBase[];
         
-        public Width: number;
+        public Width: number; 
         public Height: number;
 
         constructor() {
@@ -75,9 +74,7 @@ module Cm2k15 {
             this.Player.X = 6;
             this.Player.Y = 12;
 
-            this.Tiles[this.Player.X][this.Player.Y].IsVisited = true;
-
-            this.Rooms = [];
+            this.MarkSurroundVisited(this.Player.X, this.Player.Y);
         }
 
         private movementMap = {
@@ -97,6 +94,7 @@ module Cm2k15 {
             var response = this.Player.Move(direction);
 
             if (response.Success) {
+                this.MarkSurroundVisited(this.Player.X, this.Player.Y);
                 var tile = this.Tiles[this.Player.X][this.Player.Y];
                 tile.IsVisited = true;
 
@@ -104,6 +102,25 @@ module Cm2k15 {
             }
 
             return response;
+        }
+
+        private MarkSurroundVisited(x: number, y: number) {
+            this.MarkVisitied(x, y);
+            this.MarkVisitied(x - 1, y);
+            this.MarkVisitied(x + 1, y);
+
+            this.MarkVisitied(x, y - 1);
+            this.MarkVisitied(x - 1, y - 1);
+            this.MarkVisitied(x + 1, y - 1);
+
+            this.MarkVisitied(x, y + 1);
+            this.MarkVisitied(x - 1, y + 1);
+            this.MarkVisitied(x + 1, y + 1);
+        }
+
+        private MarkVisitied(x: number, y: number) {
+            if (this.Tiles[x] && this.Tiles[x][y])
+                this.Tiles[x][y].IsVisited = true;
         }
     }
 }
