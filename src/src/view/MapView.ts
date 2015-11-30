@@ -27,7 +27,7 @@ module Cm2k15 {
             for (var i = 0; i < this.tileCount; i++) {
                 this.tiles.push([]);
                 for (var j = 0; j < this.tileCount; j++) {
-                    var element = <HTMLDivElement>document.createElement('div');
+                    var element = document.createElement('div');
                     this.tiles[i][j] = new TileView(i, j, tileSize, element, this.model.Tiles[j][i]);
                     mapElement.appendChild(element);
                 }
@@ -57,6 +57,15 @@ module Cm2k15 {
                     tile.Display();
                 }
             }
+
+            var currentTile = this.model.Tiles[this.model.Player.X][this.model.Player.Y];
+            Object.keys(Cm2k15.directions).forEach(key => {
+                var direction = Cm2k15.directions[key];
+                var allowed = currentTile.AllowedMoves.indexOf(direction) !== -1;
+                var moveButton = document.getElementById("move-" + direction + "-command");
+
+                moveButton.style.display = allowed ? 'inline-block' : 'none';
+            });
         }
     }
 }

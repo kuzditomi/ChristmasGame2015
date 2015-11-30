@@ -40,10 +40,9 @@ module Cm2k15 {
 
     var storiesTileMapping: { [key: string]: StoryModel }
     storiesTileMapping = {
-        'kb': {
-            Id: 'kb',
-            Story: 'Ez a bejárat!'
-        }
+        'kb': new StoryModel('kb',
+            'Ez a bejárat!'
+        )
     };
 
     export class MapModel {
