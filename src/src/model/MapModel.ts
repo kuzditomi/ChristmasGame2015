@@ -3,15 +3,9 @@
 /// <reference path="StoryModel.ts"/>
 /// <reference path="MoveDirections.ts"/>
 /// <reference path="../data/maps.ts"/>
+/// <reference path="../data/stories.ts"/>
 
 module Cm2k15 {
-    var storiesTileMapping: { [key: string]: StoryModel }
-    storiesTileMapping = {
-        'kb': new StoryModel('kb',
-            'Ez a bejárat!'
-        )
-    };
-
     export class MapModel {
         public Tiles: TileModel[][];
         public Player: PlayerModel;
@@ -20,6 +14,16 @@ module Cm2k15 {
         public Height: number;
 
         constructor() {
+            this.loadMap(gamemap, canMoveOnMap);
+            this.Player = new PlayerModel();
+
+            this.Player.X = 6;
+            this.Player.Y = 12;
+
+            this.MarkSurroundVisited(this.Player.X, this.Player.Y);
+        }
+
+        private loadMap(map: string[][], movements: string[][]) {
             this.Width = map.length;
             this.Height = map.length;
 
@@ -29,19 +33,14 @@ module Cm2k15 {
                 this.Tiles[i] = [];
                 for (var j = 0; j < this.Width; j++) {
                     var tile = new TileModel(map[j][i]);
-                    
-                    tile.AllowMovementInDirections(this.getDirections(j, i));
+
+                    tile.AllowMovementInDirections(this.getDirections(movements,j, i));
                     tile.Story = storiesTileMapping[tile.Type];
 
                     this.Tiles[i][j] = tile;
                 }
             }
 
-            this.Player = new PlayerModel();
-            this.Player.X = 6;
-            this.Player.Y = 12;
-
-            this.MarkSurroundVisited(this.Player.X, this.Player.Y);
         }
 
         private movementMap = {
@@ -51,8 +50,8 @@ module Cm2k15 {
             'r': Cm2k15.directions.Right
         }
 
-        private getDirections(x: number, y: number): string[] {
-            var movementCell = canMoveOnMap[x][y];
+        private getDirections(movements: string[][], x: number, y: number): string[] {
+            var movementCell = movements[x][y];
             var result = movementCell.split('').map(d => this.movementMap[d]);
             return result;
         }
@@ -68,6 +67,13 @@ module Cm2k15 {
                 if (tile.Story) {
                     response.Story = tile.Story;
                     this.Player.IsInStory = true;
+                } else {
+                    this.Player.IsInStory = true;
+                }
+
+                var transport = mapTransports[tile.Type];
+                if (transport) {
+                    this.loadMap(transport.map, transport.movements);
                 }
             }
 

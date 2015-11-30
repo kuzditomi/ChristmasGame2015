@@ -1,12 +1,19 @@
-﻿
-module Cm2k15 {
-    export var map: string[][];
+﻿module Cm2k15 {
+    export interface IMapTransport {
+        map: string[][];
+        movements: string[][];
+        tile: string;
+    }
+
+    export var gamemap: string[][];
     export var factorymap: string[][];
 
     export var canMoveOnMap: string[][];
     export var canMoveOnFactoryMap: string[][];
 
-    map = [
+    export var mapTransports: { [key: string]: IMapTransport };
+
+    gamemap = [
         ['-', '-', '-', '-', '-', 'e1', 'e2', 'e3', 'e4', 'e5', 'e6', 'e7', 'e8'],
         ['-', '-', '-', '-', '-', 'e9', 'e10', 'e11', 'e12', 'e13', 'e14', 'e15', 'e16'],
         ['-', 'm1', 'm2', 'm3', '-', 'e17', 'e17', 'e19', 'e20', 'e21', 'e22', 'e23', 'e24'],
@@ -38,11 +45,23 @@ module Cm2k15 {
     ];
 
     factorymap = [
-        ['tl','tm','tr'],
-        ['bl','bm','br'],
+        ['-', 'texit', '-'],
+        ['tl', 'tm', 'tr'],
+        ['bl', 'bm', 'br'],
+        ['-', 'bexit', '-']
     ];
     canMoveOnFactoryMap = [
-        ['r','udlr','l'],
-        ['r','udlr','l']
+        ['', '', ''],
+        ['r', 'udlr', 'l'],
+        ['r', 'udlr', 'l'],
+        ['', '', '']
     ];
+
+    mapTransports = {
+        // map => factorymap
+        'g13': { map: factorymap, movements: canMoveOnMap , tile: 'bm' },
+
+        // factorymap => map
+        'bexit': { map: gamemap, movements: canMoveOnFactoryMap, tile: 'l' }
+    };
 }

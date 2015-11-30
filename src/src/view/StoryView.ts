@@ -11,6 +11,7 @@
         public Draw(model: StoryModel) {
             if (!model) {
                 this.storyElement.innerText = "";
+                this.storyImageElement.style.display = 'none';
                 return;
             }
 

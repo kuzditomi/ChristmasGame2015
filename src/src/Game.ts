@@ -75,8 +75,8 @@ module Cm2k15 {
         }
 
         private moveCommand(direction) {
-            if (this.mapModel.Player.IsInStory)
-                return;
+            //if (this.mapModel.Player.IsInStory)
+            //  return;
 
             var currentTile = this.mapModel.Tiles[this.mapModel.Player.X][this.mapModel.Player.Y];
             if (currentTile.AllowedMoves.indexOf(direction) == -1) 
@@ -90,7 +90,7 @@ module Cm2k15 {
             this.storyView.Draw(result.Story);
             this.mapView.Display();
 
-            return result.Message + (result.Story && ('</br>' + result.Story.Story) || '');
+            return result.Message + ((result.Story && ('</br>' + result.Story.Story)) || '');
         }
 
         private message(text: string) {
