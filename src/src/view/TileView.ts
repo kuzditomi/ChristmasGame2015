@@ -3,12 +3,10 @@ module Cm2k15 {
     export class TileView {
         private element: HTMLDivElement;
         private content: string;
-        private model: TileModel;
 
         public constructor(row: number, col: number, size: number, element: HTMLDivElement, model: TileModel) {
             this.element = element;
             this.content = '';
-            this.model = model;
             this.initialize(row, col, size);
         }
 
@@ -19,15 +17,15 @@ module Cm2k15 {
             this.element.className = 'tile';
         } 
 
-        public Display() { 
-            if (this.model.IsVisited) {
+        public Display(model: TileModel) { 
+            if (model.IsVisited) {
                 this.element.style.backgroundColor = '#e3e3e3';
-                this.element.style.backgroundImage = "url('images/" + this.model.Type + ".png')";
+                this.element.style.backgroundImage = "url('images/" + model.Type + ".png')";
             } else {
                 this.element.style.background = '#363636';                
             }
 
-            if (this.model.IsPlayer) {
+            if (model.IsPlayer) {
                 this.element.className = 'tile player';
             } else {                
                 this.element.className = 'tile';

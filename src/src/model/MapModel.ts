@@ -25,7 +25,7 @@ module Cm2k15 {
 
         private loadMap(map: string[][], movements: string[][]) {
             this.Width = map.length;
-            this.Height = map.length;
+            this.Height = map[0].length;
 
             this.Tiles = [];
 
@@ -68,15 +68,24 @@ module Cm2k15 {
                     response.Story = tile.Story;
                     this.Player.IsInStory = true;
                 } else {
-                    this.Player.IsInStory = true;
+                    this.Player.IsInStory = false;
                 }
 
                 var transport = mapTransports[tile.Type];
                 if (transport) {
+                    for (var i = 0; i < transport.map.length; i++) {
+                        for (var j = 0; j < transport.map[i].length; j++) {
+                            if (transport.map[j][i] == transport.tile) {
+                                this.Player.X = i;
+                                this.Player.Y = j;
+                            }
+                        }
+                    }
                     this.loadMap(transport.map, transport.movements);
                 }
             }
 
+            //console.log(this.Player);
             return response;
         }
 

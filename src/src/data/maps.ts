@@ -59,9 +59,9 @@
 
     mapTransports = {
         // map => factorymap
-        'g13': { map: factorymap, movements: canMoveOnMap , tile: 'bm' },
+        'g13': { map: factorymap, movements: canMoveOnFactoryMap , tile: 'bm' },
 
         // factorymap => map
-        'bexit': { map: gamemap, movements: canMoveOnFactoryMap, tile: 'l' }
+        'bexit': { map: gamemap, movements: canMoveOnMap, tile: 'l' }
     };
 }

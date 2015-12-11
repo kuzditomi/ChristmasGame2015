@@ -15,7 +15,6 @@ module Cm2k15 {
             console.log('gamemap constructor');
 
             var mapElement = <HTMLDivElement>document.getElementById('map');
-            var message = <HTMLDivElement>document.getElementById('message');
 
             // initialize game state
             this.model = model;
@@ -45,20 +44,21 @@ module Cm2k15 {
             //  : this.model.Player.Y > (this.model.Height - 1 - middle) ? this.model.Height - this.tileCount
             //  : this.model.Player.Y - middle;
 
-            for (var i = 0; i < this.tileCount; i++) {
-                for (var j = 0; j < this.tileCount; j++) {
-                    var tile = this.tiles[i][j];
+            for (var i = 0; i < this.model.Tiles.length; i++) {
+                for (var j = 0; j < this.model.Tiles[i].length; j++) {
+                    var tile = this.tiles[j][i];
                     if (this.model.Player.X == i && this.model.Player.Y == j) {
                         this.model.Tiles[i][j].IsPlayer = true;
                     } else {
                         this.model.Tiles[i][j].IsPlayer = false;
                     }
 
-                    tile.Display();
+                    tile.Display(this.model.Tiles[i][j]);
                 }
             }
 
             var currentTile = this.model.Tiles[this.model.Player.X][this.model.Player.Y];
+            //console.log(currentTile);
             Object.keys(Cm2k15.directions).forEach(key => {
                 var direction = Cm2k15.directions[key];
                 var allowed = currentTile.AllowedMoves.indexOf(direction) !== -1;
