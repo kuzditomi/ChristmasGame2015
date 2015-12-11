@@ -14,25 +14,10 @@ module Cm2k15 {
         private messageElement: HTMLDivElement;
 
         public constructor() {
-            // get dom elements
-            var input = <HTMLTextAreaElement>document.getElementById('command');
-            var message = <HTMLDivElement>document.getElementById('message');
-            this.messageElement = message;
-
             // initialize state and commands
             this.mapModel = new MapModel();
             this.commands = {};
             this.registerCommands();
-
-            // subscribe events      
-            input.onkeydown = (e: KeyboardEvent) => {
-                if (e.keyCode == 13) {
-                    var command = input.value;
-                    input.value = '';
-                    this.onCommand.call(this, command);
-                    return false;
-                }
-            };
 
             // create map view
             this.mapView = new MapView(this.mapModel);
@@ -49,7 +34,7 @@ module Cm2k15 {
             };
             document.getElementById('move-down-command').onclick = () => {
                 this.onCommand('move ' + Cm2k15.directions.Down);
-            };
+            }; 
             document.getElementById('move-right-command').onclick = () => {
                 this.onCommand('move ' + Cm2k15.directions.Right);
             };
@@ -67,10 +52,7 @@ module Cm2k15 {
             var command = parts[0];
             var args = parts.length > 1 ? parts.splice(1, parts.length - 1) : [];
             if (this.commands[command]) {
-                var result = this.commands[command].apply(this, args);
-                this.message(result);
-            } else {
-                this.messageNoCommand();
+                this.commands[command].apply(this, args);
             }
         }
 
@@ -91,28 +73,6 @@ module Cm2k15 {
             this.mapView.Display();
 
             return result.Message + ((result.Story && ('</br>' + result.Story.Story)) || '');
-        }
-
-        private message(text: string) {
-            if (text) {
-                var row = document.createElement('div');
-                row.innerHTML = text;
-
-                this.messageElement.appendChild(row);
-                this.messageElement.scrollTop = this.messageElement.scrollHeight - this.messageElement.clientHeight;
-            }
-        }
-
-        private messageNoCommand() {
-            var messages = [
-                "what?",
-                "uhm...",
-                "nope",
-                "i dont think so"
-            ];
-
-            var message = messages[Math.floor(Math.random() * messages.length)];
-            this.message(message);
         }
     }
 }
