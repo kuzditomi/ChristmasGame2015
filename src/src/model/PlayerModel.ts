@@ -10,6 +10,14 @@ module Cm2k15 {
         public Y: number;
         public IsInStory: boolean;
 
+        public constructor(player: PlayerModel = null){
+            if(player) {
+                this.X = player.X;
+                this.Y = player.Y;
+                this.IsInStory = player.IsInStory;
+            }
+        }
+
         public Move(direction: string) : PlayerMoveResult {
             var result = new PlayerMoveResult();
             result.Success = false;
