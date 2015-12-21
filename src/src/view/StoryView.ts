@@ -17,7 +17,7 @@
 
             this.storyElement.innerText = model.Story;
 
-            this.storyImageElement.src = 'images/' + model.Id + '_story.png';
+            this.storyImageElement.src = 'images/story/' + model.Id + '.png';
             this.storyImageElement.style.display = 'inline-block';
             this.storyImageElement.style.zIndex = '2';
         }
