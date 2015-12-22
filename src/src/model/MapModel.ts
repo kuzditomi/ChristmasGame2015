@@ -68,11 +68,11 @@ module Cm2k15 {
                 var tile = this.Tiles[this.Player.X][this.Player.Y];
                 tile.IsVisited = true;
 
-
                 var transport = mapTransports[tile.Type];
                 if (transport) {
                     this.Transport(transport);
                     tile = this.Tiles[this.Player.X][this.Player.Y];
+                    this.MarkSurroundVisited(this.Player.X, this.Player.Y);
                 }
 
                 if (tile.Story) {

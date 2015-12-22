@@ -6,7 +6,7 @@
         'kb': new StoryModel('kb',
             'Ez a bejárat!'
         ),
-        'i5': new StoryModel('i5',
+        'b': new StoryModel('i5',
             'Ez az istálló, itt találod a készülődő manókat, akik tankolják a szánt, polírozzák Rudolf orrát, és várják Mikulást.'
         ),
         'bexit': new StoryModel('bexit',
@@ -33,7 +33,7 @@
         'bm': new StoryModel('bm',
             'Üdv a gyárban, balra van a raktár, jobbra a szerelő szoba, arra előre pedig egy következő folyosó.'
         ),
-        'm8': new StoryModel('m8',
+        'm': new StoryModel('m8',
             'Manó falva'
         ),
         'e20': new StoryModel('e20',
