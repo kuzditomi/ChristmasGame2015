@@ -1,6 +1,7 @@
 /// <reference path="model/MapModel.ts"/>
 /// <reference path="view/MapView.ts"/>
 /// <reference path="view/StoryView.ts"/>
+/// <reference path="StoryLineSetter.ts"/>
 
 module Cm2k15 {
     export class Game {
@@ -8,6 +9,7 @@ module Cm2k15 {
         private mapModel: MapModel;
 
         private storyView: StoryView;
+        private storyLineSetter: StoryLineSetter;
 
         private commands: { [key: string]: (args) => any };
 
@@ -24,6 +26,7 @@ module Cm2k15 {
             this.mapView.Display();
 
             this.storyView = new StoryView();
+            this.storyLineSetter = new StoryLineSetter();
         }
 
         private registerCommands() {
@@ -68,6 +71,8 @@ module Cm2k15 {
             if (!result.Success) {
                 return result.Message;
             }
+
+            this.storyLineSetter.UpdateBy(result.Story);
 
             this.storyView.Draw(result.Story);
             this.mapView.Display();

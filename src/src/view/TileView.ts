@@ -18,21 +18,19 @@ module Cm2k15 {
         } 
 
         public Display(model: TileModel) {
-            var image = new Image();
-
+            var classes = ['tile'];
 
             if (model.IsVisited && Cm2k15.ignoreTiles.indexOf(model.Type) == -1) {
-                this.element.style.backgroundColor = '#e3e3e3';
-                this.element.style.backgroundImage = "url('images/" + model.Type + ".png')";
+                classes.push("tile-" + model.Type);
             } else {
-                this.element.style.background = '#363636';
+                classes.push('dark');
             }
 
             if (model.IsPlayer) {
-                this.element.className = 'tile player';
-            } else {                
-                this.element.className = 'tile';
+                classes.push("player");
             }
+
+            this.element.className = classes.join(' ');
         }
     }
 }

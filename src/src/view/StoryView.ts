@@ -12,14 +12,16 @@
             if (!model) {
                 this.storyElement.innerText = "";
                 this.storyImageElement.style.display = 'none';
+                this.storyImageElement.className = '';
                 return;
             }
 
             this.storyElement.innerText = model.Story;
 
-            this.storyImageElement.src = 'images/story/' + model.Id + '.png';
             this.storyImageElement.style.display = 'inline-block';
             this.storyImageElement.style.zIndex = '2';
+
+            this.storyImageElement.className = 'story-' + model.Id;
         }
     }
 } 

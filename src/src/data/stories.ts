@@ -4,13 +4,16 @@
 
     storiesTileMapping = {
         'kb': new StoryModel('kb',
-            'Ez a bejárat!'
+            'Üdv a játékban. Nyertél egy jegyet a Mikulásgyárba, találkozhatsz sok varázslattal, és ha jó voltál, még ajándékot is kaphatsz.'
         ),
         'b': new StoryModel('i5',
-            'Ez az istálló, itt találod a készülődő manókat, akik tankolják a szánt, polírozzák Rudolf orrát, és várják Mikulást.'
+            'Ez az istálló, innen indul és érkezik a télapó. A manók épp takarítanak, tankolnak, polírozzák Rudolf orrát. Üresnek találod, még nem érkezett el az idő az indulásra.'
         ),
         'bexit': new StoryModel('bexit',
             'Szia! Megtaláltad a Mikulás gyárát, én leszek a kalauzod. Ameddig Mikulás készülődik, megismerheted a műhelyét, sőt ki is próbálhatod! Gyere beljebb, megmutatom!'
+        ),
+        'bm': new StoryModel('bm',
+            'Hát íme. Balra találod a raktárat, jobbra a műhelyt, a következő folyosón pedig megtalálod a festőszobát. És hogy mit rejt a negyedik ajtó? Egy kis varázslaT..'
         ),
         'bexit2': new StoryModel('bexit2',
             'Ez a bejárat a gyárba.'
@@ -30,10 +33,7 @@
         'br': new StoryModel('br',
             'Ez itt a szerelős szoba.'
         ),
-        'bm': new StoryModel('bm',
-            'Üdv a gyárban, balra van a raktár, jobbra a szerelő szoba, arra előre pedig egy következő folyosó.'
-        ),
-        'm': new StoryModel('m8',
+        'm': new StoryModel('m',
             'Manó falva'
         ),
         'e20': new StoryModel('e20',
