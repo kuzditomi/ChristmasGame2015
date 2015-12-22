@@ -17,12 +17,15 @@ module Cm2k15 {
             this.element.className = 'tile';
         } 
 
-        public Display(model: TileModel) { 
-            if (model.IsVisited) {
+        public Display(model: TileModel) {
+            var image = new Image();
+
+
+            if (model.IsVisited && Cm2k15.ignoreTiles.indexOf(model.Type) == -1) {
                 this.element.style.backgroundColor = '#e3e3e3';
                 this.element.style.backgroundImage = "url('images/" + model.Type + ".png')";
             } else {
-                this.element.style.background = '#363636';                
+                this.element.style.background = '#363636';
             }
 
             if (model.IsPlayer) {

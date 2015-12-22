@@ -17,6 +17,7 @@
     export var canMoveOnBarnMap: string[][];
 
     export var mapTransports: { [key: string]: IMapTransport };
+    export var ignoreTiles: string[] = [];
 
     gamemap = [
         ['-', '-', '-', '-', '-', 'e1', 'e2', 'e3', 'e4', 'e5', 'e6', 'e7', 'e8'],
@@ -61,6 +62,7 @@
         ['r', 'udlr', 'l'],
         ['', 'u', '']
     ];
+    ignoreTiles = ignoreTiles.concat(['texit','bexit','tl','tm','tr','bl','bm','br','bexit']);
 
     villagemap = [
         ["m", "rexitv"],
@@ -70,6 +72,7 @@
         ['dr',''],
         ['','']
     ];
+    ignoreTiles = ignoreTiles.concat(['m','rexitv','bexitv']);
 
     barnmap = [
         ["texitb", "-"],
@@ -79,6 +82,7 @@
         ['',''],
         ['ur','']
     ];
+    ignoreTiles = ignoreTiles.concat(['b','texitb','rexitb']);
 
     mapTransports = {
         // map => factorymap

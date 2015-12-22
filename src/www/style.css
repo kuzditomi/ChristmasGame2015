@@ -9,6 +9,7 @@ main#left #map {
   height: 338px;
   border: 1px solid black;
   position: relative;
+  box-sizing: content-box;
 }
 main#left #map .tile {
   position: absolute;

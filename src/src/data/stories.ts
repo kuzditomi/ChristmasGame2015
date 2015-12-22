@@ -46,5 +46,4 @@
     };
 
     twoStateStores = ["bexit"];
-
 }
