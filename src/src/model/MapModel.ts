@@ -109,16 +109,17 @@ module Cm2k15 {
                 this.LoadState(prevState);
                 this.stateBackup = null;
             } else {
-                for (var i = 0; i < transport.map.length; i++) {
-                    for (var j = 0; j < transport.map[i].length; j++) {
-                        if (transport.map[i][j] == transport.tile) {
-                            this.Player.X = j;
-                            this.Player.Y = i;
-                        }
-                    }
-                }
                 this.loadMap(transport.map, transport.movements);
                 this.stateBackup = state;
+            }
+
+            for (var i = 0; i < transport.map.length; i++) {
+                for (var j = 0; j < transport.map[i].length; j++) {
+                    if (transport.map[i][j] == transport.tile) {
+                        this.Player.X = j;
+                        this.Player.Y = i;
+                    }
+                }
             }
         }
 
