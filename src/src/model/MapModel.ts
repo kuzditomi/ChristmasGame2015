@@ -13,7 +13,8 @@ module Cm2k15 {
         public Width:number;
         public Height:number;
 
-        private stateStack:StateModel[];
+        private stateBackup: StateModel;
+        private visitedStories: string[];
 
         constructor() {
             this.loadMap(gamemap, canMoveOnMap);
@@ -22,9 +23,8 @@ module Cm2k15 {
             this.Player.X = 6;
             this.Player.Y = 12;
 
-            this.stateStack = [];
-
             this.MarkSurroundVisited(this.Player.X, this.Player.Y);
+            this.visitedStories = [];
         }
 
         private loadMap(map:string[][], movements:string[][]) {
@@ -68,16 +68,24 @@ module Cm2k15 {
                 var tile = this.Tiles[this.Player.X][this.Player.Y];
                 tile.IsVisited = true;
 
-                if (tile.Story) {
-                    response.Story = tile.Story;
-                    this.Player.IsInStory = true;
-                } else {
-                    this.Player.IsInStory = false;
-                }
 
                 var transport = mapTransports[tile.Type];
                 if (transport) {
                     this.Transport(transport);
+                    tile = this.Tiles[this.Player.X][this.Player.Y];
+                }
+
+                if (tile.Story) {
+                    if(this.visitedStories.indexOf(tile.Story.Id) != -1)
+                        tile.Story = storiesTileMapping[tile.Story.Id+'2'];
+
+                    response.Story = tile.Story;
+                    this.Player.IsInStory = true;
+
+                    if(twoStateStores.indexOf(tile.Story.Id) != -1 && this.visitedStories.indexOf(tile.Story.Id) == -1)
+                        this.visitedStories.push(tile.Story.Id);
+                } else {
+                    this.Player.IsInStory = false;
                 }
             }
 
@@ -96,22 +104,22 @@ module Cm2k15 {
         private Transport(transport) {
             var state = this.GenerateState();
 
-            if (this.stateStack.length > 0) {
-                var prevState = this.stateStack.pop();
+            if (this.stateBackup) {
+                var prevState = this.stateBackup;
                 this.LoadState(prevState);
+                this.stateBackup = null;
             } else {
                 for (var i = 0; i < transport.map.length; i++) {
                     for (var j = 0; j < transport.map[i].length; j++) {
-                        if (transport.map[j][i] == transport.tile) {
-                            this.Player.X = i;
-                            this.Player.Y = j;
+                        if (transport.map[i][j] == transport.tile) {
+                            this.Player.X = j;
+                            this.Player.Y = i;
                         }
                     }
                 }
                 this.loadMap(transport.map, transport.movements);
+                this.stateBackup = state;
             }
-
-            this.stateStack.push(state);
         }
 
         private LoadState(state: StateModel){

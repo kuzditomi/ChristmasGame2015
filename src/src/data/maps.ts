@@ -54,12 +54,12 @@
         ['', '', ''],
         ['r', 'udlr', 'l'],
         ['r', 'udlr', 'l'],
-        ['', '', '']
+        ['', 'u', '']
     ];
 
     mapTransports = {
         // map => factorymap
-        'g13': { map: factorymap, movements: canMoveOnFactoryMap , tile: 'bm' },
+        'g13': { map: factorymap, movements: canMoveOnFactoryMap , tile: 'bexit' },
 
         // factorymap => map
         'bexit': { map: gamemap, movements: canMoveOnMap, tile: 'l' }
