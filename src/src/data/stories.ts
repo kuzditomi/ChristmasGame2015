@@ -13,7 +13,11 @@
             'Szia! Megtaláltad a Mikulás gyárát, én leszek a kalauzod. Ameddig Mikulás készülődik, megismerheted a műhelyét, sőt ki is próbálhatod! Gyere beljebb, megmutatom!'
         ),
         'bm': new StoryModel('bm',
-            'Hát íme. Balra találod a raktárat, jobbra a műhelyt, a következő folyosón pedig megtalálod a festőszobát. És hogy mit rejt a negyedik ajtó? Egy kis varázslaT..'
+            'Hát íme. Balra találod a raktárat, jobbra a műhelyt, a következő folyosón pedig megtalálod a festőszobát. És hogy mit rejt a negyedik ajtó? Egy kis varázslaT... Mivel ilyen jó voltál idén – mondja a manó és elfordul átjavítani a statisztikád -, választhatsz egy ajándékot a Mikulásgyárból:' +
+            '<ul><li class="ajandek" id="szanko">Szánkó</li><li class="ajandek" id="hintalo">Hintaló</li><li class="ajandek" id="kisvonat">Kisvonat</li></ul>'
+        ),
+        'bm2': new StoryModel('bm',
+            'Üdv újra a gyárban'
         ),
         'bexit2': new StoryModel('bexit2',
             'Ez a bejárat a gyárba.'
@@ -45,5 +49,5 @@
 
     };
 
-    twoStateStores = ["bexit"];
+    twoStateStores = ["bexit", "bm"];
 }

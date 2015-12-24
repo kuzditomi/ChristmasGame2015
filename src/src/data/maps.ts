@@ -56,12 +56,14 @@
         ['bl', 'bm', 'br'],
         ['-', 'bexit', '-']
     ];
+
     canMoveOnFactoryMap = [
         ['', '', ''],
         ['r', 'udlr', 'l'],
-        ['r', 'udlr', 'l'],
+        ['r', '', 'l'],
         ['', 'u', '']
     ];
+
     ignoreTiles = ignoreTiles.concat(['texit','bexit','tl','tm','tr','bl','bm','br','bexit']);
 
     villagemap = [

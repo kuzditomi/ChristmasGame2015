@@ -33,7 +33,7 @@ module Cm2k15 {
             }
         }
 
-        public Display() {
+        public Draw() {
             // scrolling mechanism
             //var middle = Math.floor(this.tileCount / 2);
             //var left = this.model.Player.X < (middle) ? 0

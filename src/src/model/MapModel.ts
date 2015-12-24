@@ -27,7 +27,12 @@ module Cm2k15 {
             this.visitedStories = [];
         }
 
+        private lastmap;
+        private lastmovements;
         private loadMap(map:string[][], movements:string[][]) {
+            this.lastmap = map;
+            this.lastmovements = movements;
+
             this.Width = map.length;
             this.Height = map[0].length;
 
@@ -44,7 +49,10 @@ module Cm2k15 {
                     this.Tiles[i][j] = tile;
                 }
             }
+        }
 
+        public ReloadMap(){
+            this.loadMap(this.lastmap, this.lastmovements);
         }
 
         private movementMap = {
@@ -56,8 +64,7 @@ module Cm2k15 {
 
         private getDirections(movements:string[][], x:number, y:number):string[] {
             var movementCell = movements[x][y];
-            var result = movementCell.split('').map(d => this.movementMap[d]);
-            return result;
+            return movementCell.split('').map(d => this.movementMap[d]);
         }
 
         public MovePlayer(direction) {
@@ -79,9 +86,7 @@ module Cm2k15 {
                     if(this.visitedStories.indexOf(tile.Story.Id) != -1)
                         tile.Story = storiesTileMapping[tile.Story.Id+'2'];
 
-                    response.Story = tile.Story;
                     this.Player.IsInStory = true;
-
                     if(twoStateStores.indexOf(tile.Story.Id) != -1 && this.visitedStories.indexOf(tile.Story.Id) == -1)
                         this.visitedStories.push(tile.Story.Id);
                 } else {
@@ -91,6 +96,10 @@ module Cm2k15 {
 
             //console.log(this.Player);
             return response;
+        }
+
+        public GetCurrentStory():StoryModel {
+            return this.Tiles[this.Player.X][this.Player.Y].Story;
         }
 
         private GenerateState() {

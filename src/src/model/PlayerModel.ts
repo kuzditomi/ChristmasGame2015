@@ -2,7 +2,6 @@ module Cm2k15 {
     export class PlayerMoveResult {
         public Success: boolean;
         public Message: string;
-        public Story: StoryModel;
     }
 
     export class PlayerModel {

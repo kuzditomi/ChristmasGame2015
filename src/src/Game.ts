@@ -4,6 +4,11 @@
 /// <reference path="StoryLineSetter.ts"/>
 
 module Cm2k15 {
+    export interface IGameAgent {
+        Draw();
+        ReloadMap();
+    }
+
     export class Game {
         private mapView: MapView;
         private mapModel: MapModel;
@@ -13,8 +18,6 @@ module Cm2k15 {
 
         private commands: { [key: string]: (args) => any };
 
-        private messageElement: HTMLDivElement;
-
         public constructor() {
             // initialize state and commands
             this.mapModel = new MapModel();
@@ -23,10 +26,16 @@ module Cm2k15 {
 
             // create map view
             this.mapView = new MapView(this.mapModel);
-            this.mapView.Display();
+            this.mapView.Draw();
 
             this.storyView = new StoryView();
-            this.storyLineSetter = new StoryLineSetter();
+
+            var agent:IGameAgent = {
+                Draw: () => this.Draw(),
+                ReloadMap: () => this.mapModel.ReloadMap.call(this.mapModel)
+            };
+
+            this.storyLineSetter = new StoryLineSetter(agent);
         }
 
         private registerCommands() {
@@ -72,12 +81,16 @@ module Cm2k15 {
                 return result.Message;
             }
 
-            this.storyLineSetter.UpdateBy(result.Story);
+            var story = this.mapModel.GetCurrentStory();
+            this.Draw();
 
-            this.storyView.Draw(result.Story);
-            this.mapView.Display();
+            this.storyLineSetter.UpdateBy(story);
+        }
 
-            return result.Message + ((result.Story && ('</br>' + result.Story.Story)) || '');
+        private Draw(){
+            var story = this.mapModel.GetCurrentStory();
+            this.storyView.Draw(story);
+            this.mapView.Draw();
         }
     }
 }

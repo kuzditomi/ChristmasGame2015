@@ -16,7 +16,7 @@
                 return;
             }
 
-            this.storyElement.innerText = model.Story;
+            this.storyElement.innerHTML = model.Story;
 
             this.storyImageElement.style.display = 'inline-block';
             this.storyImageElement.style.zIndex = '2';
