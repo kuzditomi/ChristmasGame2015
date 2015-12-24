@@ -9,6 +9,9 @@
         'b': new StoryModel('i5',
             'Ez az istálló, innen indul és érkezik a télapó. A manók épp takarítanak, tankolnak, polírozzák Rudolf orrát. Üresnek találod, még nem érkezett el az idő az indulásra.'
         ),
+        'b2': new StoryModel('i2',
+            'Épp indul Mikulás. Felszállsz?<a id="finish">Igen</a>'
+        ),
         'bexit': new StoryModel('bexit',
             'Szia! Megtaláltad a Mikulás gyárát, én leszek a kalauzod. Ameddig Mikulás készülődik, megismerheted a műhelyét, sőt ki is próbálhatod! Gyere beljebb, megmutatom!'
         ),
@@ -21,7 +24,7 @@
             '<ul><li>Kell majd bele {1} a raktár szobából,</li><li>az ügyes manók a műhelyben összeszerelik neked,</li><li> a festő szobában megkapja a színeit,</li><li> és végül ellátjuk a karácsony szellemével&trade;.</li></ul>'
         ),
         'bm2': new StoryModel('bm',
-            'Üdv újra a gyárban'
+            'A gyár előszobájában vagy.'
         ),
         'bexit2': new StoryModel('bexit2',
             'Ez a bejárat a gyárba.'
@@ -31,6 +34,9 @@
         ),
         'tm': new StoryModel('tm',
             'Jobbra festegethesz, balra pedig minden értelmet nyer. Az meg a hátsó kijárat az erdő felé.'
+        ),
+        'tm2': new StoryModel('tm2',
+            'Nagyon szép lett a játékod! A mikulás nemsokára indul, megtalálod az istállónál, addig nyugodtan nézz körül a birtokon.'
         ),
         'tr': new StoryModel('tr',
             'Ez a festős szoba.'
@@ -49,6 +55,9 @@
         ),
         'h1': new StoryModel('h1',
             'Tavacska'
+        ),
+        'credit': new StoryModel('credit',
+            'Boldog karácsonyt, köszi a játékot.'
         ),
 
     };
