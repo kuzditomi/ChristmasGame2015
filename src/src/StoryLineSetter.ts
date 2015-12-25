@@ -40,8 +40,10 @@ module Cm2k15 {
                         canMoveOnFactoryMap[2][1] = 'u';
                     break;
                 case 'bl':
-                    if(this.giftState == GiftState.None)
+                    if(this.giftState == GiftState.None) {
                         this.giftState = GiftState.Component;
+                        storiesTileMapping['bm'].Story = storiesTileMapping['bm2'].Story;
+                    }
                     break;
                 case 'br':
                     if(this.giftState == GiftState.Component)
@@ -50,13 +52,14 @@ module Cm2k15 {
                 case 'tm':
                     if(this.giftState == GiftState.Paint)
                         canMoveOnFactoryMap[1][1] = 'l';
-
-                    storiesTileMapping['bm'].Story = storiesTileMapping['bm2'].Story;
                     break;
                 case 'tm2':
                     if(this.giftState == GiftState.Magic) {
                         canMoveOnFactoryMap[1][1] = 'u';
                         this.giftState = GiftState.Done;
+                    } else if(this.giftState == GiftState.Done) {
+                        storiesTileMapping['tm'].Story = storiesTileMapping['tm3'].Story;
+                        storiesTileMapping['tm'].Id = 'tm';
                     }
                     break;
                 case 'tr':
@@ -72,9 +75,9 @@ module Cm2k15 {
                     }
                     break;
                 case 'i2':
-                    var story = document.getElementById('story');
+                    var storyElement = document.getElementById('story');
 
-                    story.addEventListener('click', (e:any) => {
+                    storyElement.addEventListener('click', (e:any) => {
                        if(e.target && e.target.id == 'finish'){
                            that.finishGame.apply(that);
                        }
@@ -106,6 +109,7 @@ module Cm2k15 {
             Cm2k15.canMoveOnBarnMap[1][0] = 'ur';
 
             Cm2k15.storiesTileMapping['b'] = Cm2k15.storiesTileMapping['b2'];
+            this.gameAgent.RevealMap();
         }
 
         private subscribeToGifts() {

@@ -102,6 +102,16 @@ module Cm2k15 {
             return this.Tiles[this.Player.X][this.Player.Y].Story;
         }
 
+        public Reveal(){
+            for(var i = 0; i< this.stateBackup.Tiles.length;i++){
+                for (var j = 0; j< this.stateBackup.Tiles[i].length;j++){
+                    this.stateBackup.Tiles[i][j].IsVisited = true;
+                }
+            }
+
+            this.stateBackup.Tiles[6][9].AllowedMoves = [directions.Down];
+        }
+
         private GenerateState() {
             var state = new StateModel();
             state.Player = this.clone(this.Player);

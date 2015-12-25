@@ -7,6 +7,7 @@ module Cm2k15 {
     export interface IGameAgent {
         Draw();
         ReloadMap();
+        RevealMap();
     }
 
     export class Game {
@@ -32,7 +33,8 @@ module Cm2k15 {
 
             var agent:IGameAgent = {
                 Draw: () => this.Draw(),
-                ReloadMap: () => this.mapModel.ReloadMap.call(this.mapModel)
+                ReloadMap: () => this.mapModel.ReloadMap.call(this.mapModel),
+                RevealMap: () => this.RevealMap()
             };
 
             this.storyLineSetter = new StoryLineSetter(agent);
@@ -91,6 +93,10 @@ module Cm2k15 {
             var story = this.mapModel.GetCurrentStory();
             this.storyView.Draw(story);
             this.mapView.Draw();
+        }
+
+        private RevealMap(){
+            this.mapModel.Reveal();
         }
     }
 }

@@ -38,6 +38,9 @@
         'tm2': new StoryModel('tm2',
             'Nagyon szép lett a játékod! A mikulás nemsokára indul, megtalálod az istállónál, addig nyugodtan nézz körül a birtokon.'
         ),
+        'tm3': new StoryModel('tm',
+            'A gyár hátsó folyosóján vagy.'
+        ),
         'tr': new StoryModel('tr',
             'Ez a festős szoba.'
         ),
