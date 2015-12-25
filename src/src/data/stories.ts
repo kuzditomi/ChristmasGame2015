@@ -30,7 +30,10 @@
             'Ez a bejárat a gyárba.'
         ),
         'tl': new StoryModel('tl',
-            'MAGIC!'
+            'MAGIC! <a id="showgift">MEGNÉZEM</a>'
+        ),
+        'tl2': new StoryModel('tl2',
+            'Szép lett. Grat'
         ),
         'tm': new StoryModel('tm',
             'Jobbra festegethesz, balra pedig minden értelmet nyer. Az meg a hátsó kijárat az erdő felé.'

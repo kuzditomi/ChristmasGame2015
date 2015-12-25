@@ -72,6 +72,7 @@ module Cm2k15 {
                         storiesTileMapping['tm'].Story = storiesTileMapping['tm2'].Story;
                         storiesTileMapping['tm'].Id = 'tm2';
                         canMoveOnFactoryMap[1][1] = 'u';
+                        this.subscribeShowGift();
                     }
                     break;
                 case 'i2':
@@ -90,9 +91,21 @@ module Cm2k15 {
             this.gameAgent.ReloadMap();
             this.gameAgent.Draw();
 
-            if(story.Id == 'tm2' && this.giftState == GiftState.Done){
+            if(story.Id == 'tm2' && this.giftState == GiftState.Done) {
                 this.revealMap();
             }
+        }
+
+        private subscribeShowGift(){
+            var that = this;
+            document.getElementById('story').addEventListener('click', function (e:any){
+                if (e && e.target && e.target.id == 'showgift') {
+                    Cm2k15.storiesTileMapping['tl'].Id = that.choosenGift == Gift.Hintalo ? 'hintalo' : that.choosenGift == Gift.Szanko ? 'szanko' : 'kisvonat';
+                    Cm2k15.storiesTileMapping['tl'].Story = Cm2k15.storiesTileMapping['tl2'].Story;
+                    that.gameAgent.ReloadMap();
+                    that.gameAgent.Draw();
+                }
+            });
         }
 
         private finishGame(){
