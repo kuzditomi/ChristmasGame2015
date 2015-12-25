@@ -11,13 +11,13 @@ module Cm2k15 {
     }
 
     export class Game {
-        private mapView: MapView;
-        private mapModel: MapModel;
+        private mapView:MapView;
+        private mapModel:MapModel;
 
-        private storyView: StoryView;
-        private storyLineSetter: StoryLineSetter;
+        private storyView:StoryView;
+        private storyLineSetter:StoryLineSetter;
 
-        private commands: { [key: string]: (args) => any };
+        private commands:{ [key: string]: (args) => any };
 
         public constructor() {
             // initialize state and commands
@@ -41,14 +41,32 @@ module Cm2k15 {
         }
 
         private registerCommands() {
+            var that = this;
             this.registerCommand('move', this.moveCommand);
+
+            document.addEventListener('keyup', function (e:any) {
+                switch (e.keyCode) {
+                    case 37:
+                        that.onCommand('move ' + Cm2k15.directions.Left);
+                        break;
+                    case 38:
+                        that.onCommand('move ' + Cm2k15.directions.Up);
+                        break;
+                    case 39:
+                        that.onCommand('move ' + Cm2k15.directions.Right);
+                        break;
+                    case 40:
+                        that.onCommand('move ' + Cm2k15.directions.Down);
+                        break;
+                }
+            });
 
             document.getElementById('move-up-command').onclick = () => {
                 this.onCommand('move ' + Cm2k15.directions.Up);
             };
             document.getElementById('move-down-command').onclick = () => {
                 this.onCommand('move ' + Cm2k15.directions.Down);
-            }; 
+            };
             document.getElementById('move-right-command').onclick = () => {
                 this.onCommand('move ' + Cm2k15.directions.Right);
             };
@@ -57,7 +75,7 @@ module Cm2k15 {
             };
         }
 
-        private registerCommand(key: string, command: (args) => any) {
+        private registerCommand(key:string, command:(args) => any) {
             this.commands[key] = command.bind(this);
         }
 
@@ -75,9 +93,9 @@ module Cm2k15 {
             //  return;
 
             var currentTile = this.mapModel.Tiles[this.mapModel.Player.X][this.mapModel.Player.Y];
-            if (currentTile.AllowedMoves.indexOf(direction) == -1) 
+            if (currentTile.AllowedMoves.indexOf(direction) == -1)
                 return 'erre nem mehetsz';
-            
+
             var result = this.mapModel.MovePlayer(direction);
             if (!result.Success) {
                 return result.Message;
@@ -89,13 +107,13 @@ module Cm2k15 {
             this.storyLineSetter.UpdateBy(story);
         }
 
-        private Draw(){
+        private Draw() {
             var story = this.mapModel.GetCurrentStory();
             this.storyView.Draw(story);
             this.mapView.Draw();
         }
 
-        private RevealMap(){
+        private RevealMap() {
             this.mapModel.Reveal();
         }
     }
