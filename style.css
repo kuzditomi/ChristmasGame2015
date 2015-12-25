@@ -161,57 +161,6 @@ main#left #map #story-image {
   top: 0;
   left: 0;
 }
-main#left #commands {
-  display: inline-block;
-  width: 300px;
-  height: 85px;
-  margin-top: 10px;
-  border: 1px solid black;
-}
-main#left #commands #move-commands {
-  position: relative;
-}
-main#left #commands #move-commands .move-command {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  border: 1px solid black;
-  cursor: pointer;
-}
-main#left #commands #move-commands .move-command::after {
-  font-size: 25px;
-  display: inline-block;
-  width: 90%;
-  text-align: center;
-}
-main#left #commands #move-commands #move-up-command {
-  left: 42px;
-  top: 1px;
-}
-main#left #commands #move-commands #move-up-command::after {
-  content: '\21e7';
-}
-main#left #commands #move-commands #move-left-command {
-  top: 20px;
-  left: 1px;
-}
-main#left #commands #move-commands #move-left-command::after {
-  content: '\21e6';
-}
-main#left #commands #move-commands #move-right-command {
-  left: 83px;
-  top: 20px;
-}
-main#left #commands #move-commands #move-right-command::after {
-  content: '\21e8';
-}
-main#left #commands #move-commands #move-down-command {
-  left: 42px;
-  top: 42px;
-}
-main#left #commands #move-commands #move-down-command::after {
-  content: '\21e9';
-}
 aside#right {
   display: inline-block;
   vertical-align: top;
@@ -219,8 +168,48 @@ aside#right {
 }
 aside#right #story {
   width: 300px;
-  height: 300px;
+  height: 340px;
   border: 1px solid black;
+  padding: 10px;
+  font-size: 16px;
+  font-family: "Courier new", monospace;
+}
+aside#right #story .btn {
+  cursor: pointer;
+  padding: 3px;
+  margin: 3px;
+  font-weight: bold;
+  list-style: none;
+  border: 1px solid black;
+}
+aside#right #move-commands {
+  margin-top: 12px;
+}
+aside#right #move-commands .move-command {
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
+  cursor: pointer;
+  float: left;
+  margin-right: 12px;
+}
+aside#right #move-commands .move-command::after {
+  font-size: 25px;
+  display: inline-block;
+  width: 90%;
+  text-align: center;
+}
+aside#right #move-commands #move-up-command::after {
+  content: '\21e7';
+}
+aside#right #move-commands #move-left-command::after {
+  content: '\21e6';
+}
+aside#right #move-commands #move-right-command::after {
+  content: '\21e8';
+}
+aside#right #move-commands #move-down-command::after {
+  content: '\21e9';
 }
 aside#right .ajandek {
   cursor: pointer;
