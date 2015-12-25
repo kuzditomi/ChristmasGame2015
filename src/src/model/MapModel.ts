@@ -25,6 +25,18 @@ module Cm2k15 {
 
             this.MarkSurroundVisited(this.Player.X, this.Player.Y);
             this.visitedStories = [];
+
+            var tile = this.Tiles[this.Player.X][this.Player.Y];
+            if (tile.Story) {
+                if(this.visitedStories.indexOf(tile.Story.Id) != -1)
+                    tile.Story = storiesTileMapping[tile.Story.Id+'2'];
+
+                this.Player.IsInStory = true;
+                if(twoStateStores.indexOf(tile.Story.Id) != -1 && this.visitedStories.indexOf(tile.Story.Id) == -1)
+                    this.visitedStories.push(tile.Story.Id);
+            } else {
+                this.Player.IsInStory = false;
+            }
         }
 
         private lastmap;

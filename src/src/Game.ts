@@ -27,9 +27,8 @@ module Cm2k15 {
 
             // create map view
             this.mapView = new MapView(this.mapModel);
-            this.mapView.Draw();
-
             this.storyView = new StoryView();
+            this.Draw();
 
             var agent:IGameAgent = {
                 Draw: () => this.Draw(),
