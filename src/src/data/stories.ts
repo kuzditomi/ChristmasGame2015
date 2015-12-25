@@ -10,14 +10,14 @@
             'Ez az istálló, innen indul és érkezik a télapó. A manók épp takarítanak, tankolnak, polírozzák Rudolf orrát. Üresnek találod, még nem érkezett el az idő az indulásra.'
         ),
         'b2': new StoryModel('i2',
-            'Épp indul Mikulás. Felszállsz?<a id="finish">Igen</a>'
+            'Épp indul Mikulás. Felszállsz?<a id="finish" class="btn">Igen</a>'
         ),
         'bexit': new StoryModel('bexit',
             'Szia! Megtaláltad a Mikulás gyárát, én leszek a kalauzod. Ameddig Mikulás készülődik, megismerheted a műhelyét, sőt ki is próbálhatod! Gyere beljebb, megmutatom!'
         ),
         'bm': new StoryModel('bm',
             'Hát íme. Balra találod a raktárat, jobbra a műhelyt, a következő folyosón pedig megtalálod a festőszobát. És hogy mit rejt a negyedik ajtó? Egy kis varázslaT... Mivel ilyen jó voltál idén – mondja a manó és elfordul átjavítani a statisztikád -, választhatsz egy ajándékot a Mikulásgyárból:' +
-            '<ul><li class="ajandek" id="szanko">Szánkó</li><li class="ajandek" id="hintalo">Hintaló</li><li class="ajandek" id="kisvonat">Kisvonat</li></ul>'
+            '<div class="btn" id="szanko">Szánkó</div><div class="ajandek btn" id="hintalo">Hintaló</div><div class="ajandek btn" id="kisvonat">Kisvonat</div>'
         ),
         'bm_chosen': new StoryModel('bm_chosen',
             'Á szóval a {0}t választottad! Nézzük csak hogy tudod elkészíteni...<br/>' +
@@ -30,7 +30,7 @@
             'Ez a bejárat a gyárba.'
         ),
         'tl': new StoryModel('tl',
-            'MAGIC! <a id="showgift">MEGNÉZEM</a>'
+            'MAGIC! <a class="btn" id="showgift">MEGNÉZEM</a>'
         ),
         'tl2': new StoryModel('tl2',
             'Szép lett. Grat'

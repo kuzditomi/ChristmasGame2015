@@ -40,65 +40,6 @@ main#left {
       left: 0;
     }
   }
-
-  #commands {
-    display: inline-block;
-    width: 300px;
-    height: 85px;
-    margin-top: 10px;
-    border: 1px solid black;
-
-    #move-commands {
-      position: relative;
-
-      .move-command {
-        position: absolute;
-        width: 40px;
-        height: 40px;
-        border: 1px solid black;
-        cursor: pointer;
-
-        &::after{
-          font-size: 25px;
-          display: inline-block;
-          width: 90%;
-          text-align: center;
-        }
-      }
-
-      #move-up-command {
-        left: 42px;
-        top: 1px;
-        &::after{
-          content: '\21e7';
-        }
-      }
-
-      #move-left-command {
-        top: 20px;
-        left: 1px;
-        &::after{
-          content: '\21e6';
-        }
-      }
-
-      #move-right-command {
-        left: 83px;
-        top: 20px;
-        &::after{
-          content: '\21e8';
-        }
-      }
-
-      #move-down-command {
-        left: 42px;
-        top: 42px;
-        &::after{
-          content: '\21e9';
-        }
-      }
-    }
-  }
 }
 
 aside#right {
@@ -108,9 +49,66 @@ aside#right {
 
   #story {
     width: 300px;
-    height: 300px;
+    height: 340px;
     border: 1px solid black;
-  }  
+
+    padding: 10px;
+    font-size: 16px;
+    font-family: "Courier new", monospace;
+
+    .btn{
+      cursor: pointer;
+      padding: 3px;
+      margin: 3px;
+      font-weight: bold;
+      list-style: none;
+      border: 1px solid black;
+    }
+  }
+
+  #move-commands {
+    margin-top: 12px;
+
+    .move-command {
+      width: 40px;
+      height: 40px;
+      border: 1px solid black;
+      cursor: pointer;
+      float: left;
+      margin-right: 12px;
+
+      &::after{
+        font-size: 25px;
+        display: inline-block;
+        width: 90%;
+        text-align: center;
+      }
+    }
+
+    #move-up-command {
+      &::after{
+        content: '\21e7';
+      }
+    }
+
+    #move-left-command {
+      &::after{
+        content: '\21e6';
+      }
+    }
+
+    #move-right-command {
+      &::after{
+        content: '\21e8';
+      }
+    }
+
+    #move-down-command {
+      &::after{
+        content: '\21e9';
+      }
+    }
+  }
   
   .ajandek{
     cursor: pointer;
