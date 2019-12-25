@@ -146,7 +146,7 @@ main#left #map .tile.player::after {
   width: 100%;
   height: 100%;
   content: '';
-  background-image: url('images/player.png');
+  background-image: url('/images/player.png');
   background-size: cover;
   float: left;
 }
