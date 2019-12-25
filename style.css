@@ -20,7 +20,7 @@
 .story-szanko,
 .story-tl {
   display: inline-block;
-  background: url('/images/storysprite.png') no-repeat;
+  background: url('./images/storysprite.png') no-repeat;
   overflow: hidden;
   text-indent: -9999px;
   text-align: left;
@@ -146,7 +146,7 @@ main#left #map .tile.player::after {
   width: 100%;
   height: 100%;
   content: '';
-  background-image: url('/images/player.png');
+  background-image: url('./images/player.png');
   background-size: cover;
   float: left;
 }
