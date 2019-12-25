@@ -292,7 +292,7 @@ aside#right .ajandek {
 .tile-u5b,
 .tile-u6 {
   display: inline-block;
-  background: url('/images/tilesprite.png') no-repeat;
+  background: url('./images/tilesprite.png') no-repeat;
   overflow: hidden;
   text-indent: -9999px;
   text-align: left;
